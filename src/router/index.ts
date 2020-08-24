@@ -11,13 +11,50 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/buttons',
+    name: 'Buttons',
+    component: () => import(/* webpackChunkName: "buttons" */ '../views/Buttons.vue')
+  },
+  {
+    path: '/cards',
+    name: 'Cards',
+    component: () => import(/* webpackChunkName: "cards" */ '../views/Cards.vue')
+  },
+  {
+    path: '/inputs',
+    name: 'Inputs',
+    component: () => import(/* webpackChunkName: "inputs" */ '../views/Inputs.vue')
+  },
+  {
+    path: '/dropdowns',
+    name: 'Dropdowns',
+    component: () => import(/* webpackChunkName: "dropdowns" */ '../views/Dropdowns.vue')
+  },
+  {
+    path: '/lists',
+    name: 'Lists',
+    component: () => import(/* webpackChunkName: "lists" */ '../views/Lists.vue')
+  },
+  {
+    path: '/menus',
+    name: 'Menus',
+    component: () => import(/* webpackChunkName: "menus" */ '../views/Menus.vue')
+  },
+  {
+    path: '/popups',
+    name: 'Popups',
+    component: () => import(/* webpackChunkName: "popups" */ '../views/Popups.vue')
+  },
+  {
+    path: '/sliders',
+    name: 'Sliders',
+    component: () => import(/* webpackChunkName: "sliders" */ '../views/Sliders.vue')
+  },
+  {
+    path: '/slideshows',
+    name: 'Slideshows',
+    component: () => import(/* webpackChunkName: "slideshows" */ '../views/Slideshows.vue')
+  },
 ]
 
 const router = new VueRouter({

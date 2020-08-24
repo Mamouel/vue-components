@@ -1,0 +1,113 @@
+.wrapper {
+  margin: auto;
+  width: 80%;
+  max-width: 1400px;
+  @include mq(xxs) {
+    width: 100%;
+  }
+}
+
+.preview {
+  max-height: 200px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &_between {
+    justify-content: space-between;
+  }
+  &_center {
+    justify-content: center;
+  }
+  &_evenly {
+    justify-content: space-evenly;
+  }
+  &_end {
+    justify-content: flex-end;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.disable-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  // height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.w1 {
+  width: 100%;
+}
+
+.w2 {
+  width: 50%;
+}
+
+.w3 {
+  width: calc(100% / 3);
+}
+
+.w4 {
+  width: 25%;
+}
+
+.w5 {
+  width: calc(100% / 5);
+}
+
+.w6 {
+  width: calc(100% / 6);
+}
+
+.tabs {
+  justify-content: flex-end;
+  align-items: center;
+  @include mq(xs) {
+    // flex-direction: column;
+  }
+  &__text {
+    padding: 10px;
+    margin: 0;
+    @include font(14px, normal, 16px);
+  }
+  &__item {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      svg {
+        fill: $primary;
+      }
+    }
+
+    .selected {
+      svg {
+        fill: $primary;
+      }
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+      fill: $greyDark;
+      @include transition(fill, 0.3s, ease);
+    }
+  }
+  .search-input {
+    flex: 1;
+  }
+}

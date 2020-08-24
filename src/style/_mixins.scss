@@ -1,0 +1,109 @@
+@mixin box-shadow(
+  $shadow1: 0 0 0 1px rgba(63, 63, 68, 0.05),
+  $shadow2: 0 1px 3px 0 rgba(63, 63, 68, 0.15)
+) {
+  $params: $shadow1, $shadow2;
+  -webkit-box-shadow: $params !important;
+  -moz-box-shadow: $params !important;
+  box-shadow: $params !important;
+}
+
+@mixin text-field {
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: 0.5em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  @include rounded();
+  @include box-shadow(
+    0 0 0 1px rgba(63, 63, 68, 0.05),
+    0 1px 3px 0 rgba(63, 63, 68, 0.15)
+  );
+}
+
+@mixin transition($what: all, $time: 0.3s, $how: ease-in-out) {
+  -webkit-transition: $what $time $how;
+  -moz-transition: $what $time $how;
+  -ms-transition: $what $time $how;
+  -o-transition: $what $time $how;
+  transition: $what $time $how;
+}
+
+@mixin rounded($radius: 0.4rem) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin font($font-size: 1rem, $font-weight: medium, $line-height: 1.2rem) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+@mixin background(
+  $background-size: cover,
+  $background-color: $greyDark,
+  $background-position: center,
+  $background-repeat: no-repeat
+) {
+  background-size: $background-size;
+  background-color: $background-color;
+  background-position: $background-position;
+  background-repeat: $background-repeat;
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from($from),
+    to($to)
+  );
+  background: -moz-linear-gradient(top, $from, $to);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+//MEDIA QUERIES
+
+@mixin mq($size) {
+  @if $size==phone {
+    @media (max-width: 375px) {
+      @content;
+    }
+  } @else if $size==xxs {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $size==xs {
+    @media (max-width: 600px) {
+      @content;
+    }
+  } @else if $size==s {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $size==m {
+    @media (max-width: 900px) {
+      @content;
+    }
+  } @else if $size==l {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size==xl {
+    @media (max-width: 1290px) {
+      @content;
+    }
+  } @else if $size==xxl {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  } @else if $size==xxxl {
+    @media (min-width: 1441px) {
+      @content;
+    }
+  }
+}
