@@ -1,0 +1,72 @@
+.btn {
+  border: none;
+  @include rounded;
+  outline: none;
+  @include transition(all, 0.25s, ease-in);
+  @include font(16px, bold, 16px);
+  @include box-shadow;
+  cursor: pointer;
+  margin: 5px 10px;
+  background-color: $secondary;
+  padding: 12px 18px;
+  color: $white;
+  // background-color: #2196f3;
+  &:hover {
+    background-color: $secondary-dark;
+  }
+  &_primary {
+    background-color: $white;
+    font-weight: bold;
+    color: $primary;
+    border: 1px solid $primary;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $primary;
+      color: $white !important;
+      border: 1px solid $primary;
+    }
+  }
+  &_secondary {
+    background-color: $secondary;
+    color: $white;
+    &:hover {
+      background-color: $secondary-dark;
+    }
+  }
+  &_error {
+    background-color: $error;
+    color: $white;
+    &:hover {
+      background-color: $error-dark;
+    }
+  }
+  &_warning {
+    background-color: $warning;
+    color: $white;
+    &:hover {
+      background-color: $warning-dark;
+    }
+  }
+  &_success {
+    background-color: $success;
+    color: $white;
+    &:hover {
+      background-color: $success-dark;
+    }
+  }
+  &_small {
+    padding: 5px 10px;
+  }
+  &_large {
+    padding: 15px 30px;
+  }
+  &_round {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

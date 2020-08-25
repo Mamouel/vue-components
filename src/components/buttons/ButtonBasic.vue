@@ -12,14 +12,6 @@ export default class Button extends Vue {
   @Prop({ type: String }) private classProp!: string;
   logAlert = () => {
     this.$emit("log");
-  }
+  };
 }
 </script>
-
-<style lang="scss" scoped>
-@import "../../style/index.scss";
-
-button {
-  @include ripples($secondary, 20, 60);
-}
-</style>

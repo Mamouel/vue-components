@@ -5,7 +5,7 @@ interface StateType {
 
 const initialState: StateType = {
   isLoading: false,
-  menuOpen: false,
+  menuOpen: true,
 };
 
 const getters = {

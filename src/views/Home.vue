@@ -11,17 +11,20 @@
 </template>
 
 <script>
-import Banner from '@/components/banners/Banner.vue'
-
-export default {
-  name: 'Home',
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { mapActions, mapGetters } from "vuex";
+import Banner from "@/components/banners/Banner.vue";
+@Component({
   components: {
-    Banner
-  }
-}
+    Banner,
+  },
+})
+export default class Home extends Vue {}
 </script>
 
 <style lang="scss" scoped>
 .home {
+  &__desc {
+  }
 }
 </style>
