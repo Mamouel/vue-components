@@ -1,5 +1,5 @@
 <template>
-  <div class="inputs wrapper">
+  <div class="inputs view wrapper">
     <h1>Inputs</h1>
   </div>
 </template>

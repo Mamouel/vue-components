@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" :class="bodyScroll ? 'navbar_scrolled' : ''">
+  <nav class="navbar" :class="[bodyScroll ? 'navbar_scrolled' : '', getTheme ? 'dark' : 'light']">
     <div class="navbar__wrapper wrapper flex flex_between">
       <div class="menu-burger" @click="toggleMenu(!getMenuOpen)">
         <div class="menu-burger-btn" :class="getMenuOpen ? 'open' : 'closed'">
@@ -75,13 +75,12 @@ export default class Navbar extends Vue {
 @import "../../style/index.scss";
 
 .navbar {
-  background-color: $transparentColor;
+  background-color: $transparent;
   z-index: 1000;
   position: fixed;
   width: 100%;
   height: $navbarHeight;
   @include transition(background-color, 0.3s, ease);
-
   &__wrapper {
     width: 100%;
     max-width: 1800px;
@@ -90,11 +89,21 @@ export default class Navbar extends Vue {
   }
 
   &_scrolled {
-    background-color: $white;
     @include box-shadow(
       0 0 0 1px rgba(63, 63, 68, 0.05),
       0 1px 3px 0 rgba(63, 63, 68, 0.15)
     );
+    &.light {
+      background-color: $whitish;
+    }
+    &.dark {
+      background-color: $black;
+      color: white;
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+    }
   }
 
   &__logo {
@@ -132,9 +141,6 @@ export default class Navbar extends Vue {
     @include mq(xxs) {
       width: 100vw;
     }
-
-    // &.open {
-    // }
 
     &.closed {
       transform: translateX(-100%);
@@ -193,7 +199,7 @@ export default class Navbar extends Vue {
 }
 
 .menu-burger {
-  background: $transparentColor;
+  background: $transparent;
   z-index: 1000;
   display: flex;
   border-radius: 50%;

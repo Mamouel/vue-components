@@ -1,5 +1,5 @@
 <template>
-  <div class="lists wrapper">
+  <div class="lists view wrapper">
     <h1>Lists</h1>
   </div>
 </template>

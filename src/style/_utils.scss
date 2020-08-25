@@ -4,11 +4,12 @@
   max-width: 1400px;
   @include mq(xxs) {
     width: 100%;
+    padding: 0 20px;
   }
 }
 
-.preview {
-  max-height: 200px;
+.view {
+  padding-top: 100px;
 }
 
 .flex {

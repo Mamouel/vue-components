@@ -1,5 +1,5 @@
 <template>
-  <div class="sliders wrapper">
+  <div class="sliders view wrapper">
     <h1>Sliders</h1>
   </div>
 </template>

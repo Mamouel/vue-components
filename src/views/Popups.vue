@@ -1,5 +1,5 @@
 <template>
-  <div class="popups wrapper">
+  <div class="popups view wrapper">
     <h1>Popups</h1>
   </div>
 </template>

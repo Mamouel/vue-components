@@ -1,5 +1,5 @@
 <template>
-  <div class="menus wrapper">
+  <div class="menus view wrapper">
     <h1>Menus</h1>
   </div>
 </template>

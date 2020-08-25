@@ -1,6 +1,7 @@
 <template>
-  <div class="dropdowns wrapper">
+  <div class="dropdowns view wrapper">
     <h1>Dropdowns</h1>
+    <DropdownBasic />
   </div>
 </template>
 
@@ -8,8 +9,12 @@
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 
+import DropdownBasic from "@/components/dropdowns/DropdownBasic.vue";
+
 @Component({
-  components: {},
+  components: {
+    DropdownBasic
+  },
 })
 export default class Dropdowns extends Vue {}
 </script>

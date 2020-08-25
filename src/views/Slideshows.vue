@@ -1,6 +1,7 @@
 <template>
-  <div class="slideshows wrapper">
+  <div class="slideshows view wrapper">
     <h1>Slideshows</h1>
+    <SlideshowBasic />
   </div>
 </template>
 
@@ -8,8 +9,12 @@
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 
+import SlideshowBasic from "@/components/slideshows/SlideshowBasic.vue";
+
 @Component({
-  components: {},
+  components: {
+    SlideshowBasic
+  },
 })
 export default class Slideshows extends Vue {}
 </script>
