@@ -8,7 +8,19 @@
           <span class="line bottom"></span>
         </div>
       </div>
-      <div class="search-input input-ctn flex flex_between" style="margin-left: auto">
+      <div class="lang">
+        <div class="lang__btn" @mouseover="displayLang = true" @mouseleave="displayLang = false">fr</div>
+        <div
+          class="lang__dropdown"
+          :class="displayLang ? 'open' : 'closed'"
+          @mouseover="displayLang = true"
+          @mouseleave="displayLang = false"
+        >
+          <div class="lang__dropdown__item" @click="changeLang('en')">English</div>
+          <div class="lang__dropdown__item" @click="changeLang('fr')">Francais</div>
+        </div>
+      </div>
+      <div class="search-input input-ctn flex flex_between">
         <input
           class
           id="main-search"
@@ -19,7 +31,24 @@
           placeholder="input, button ..."
         />
       </div>
-      <div class="navbar__logo" @click="toggleTheme(!getTheme)">change theme</div>
+      <div
+        class="navbar__theme"
+        @click="toggleTheme(!getTheme)"
+        @mouseover="displayThemeTooltip = true"
+        @mouseleave="displayThemeTooltip = false"
+      >
+        <span v-if="getTheme">
+          <IconLight />
+        </span>
+        <span v-else>
+          <IconDark />
+        </span>
+
+        <span
+          class="navbar__theme_tooltip"
+          :class="displayThemeTooltip ? 'open' : 'closed'"
+        >Toggle {{ getTheme ? 'light' : 'dark' }} theme</span>
+      </div>
       <div
         class="navbar__links flex"
         :class="[getMenuOpen ? 'open' : 'closed', getTheme ? 'dark' : 'light']"
@@ -42,7 +71,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
+import IconDark from "@/assets/moon.svg";
+import IconLight from "@/assets/sun.svg";
+
 @Component({
+  components: {
+    IconDark,
+    IconLight,
+  },
   methods: {
     ...mapActions("menu", ["toggleMenu"]),
     ...mapActions("theme", ["toggleTheme"]),
@@ -54,6 +90,8 @@ import { mapActions, mapGetters } from "vuex";
 })
 export default class Navbar extends Vue {
   public bodyScroll: boolean = false;
+  public displayLang: boolean = false;
+  public displayThemeTooltip: boolean = false;
   public displaySearchInput: boolean = false;
   public handleScroll() {
     if (window.scrollY > 0) {
@@ -87,7 +125,6 @@ export default class Navbar extends Vue {
     margin: 0;
     height: 100%;
   }
-
   &_scrolled {
     @include box-shadow(
       0 0 0 1px rgba(63, 63, 68, 0.05),
@@ -106,18 +143,27 @@ export default class Navbar extends Vue {
     }
   }
 
-  &__logo {
+  &__theme {
     padding: 1rem 2rem;
-
-    img {
-      max-width: 9rem;
-
-      @include mq(xs) {
-        max-width: 5rem;
-      }
-
-      @include mq(l) {
-        max-width: 7rem;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      color: $primary;
+    }
+    &_tooltip {
+      position: absolute;
+      padding: 5px 10px;
+      background-color: $greyDark;
+      left: 0;
+      top: 50px;
+      color: $white;
+      @include rounded;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      &.open {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
@@ -272,6 +318,44 @@ export default class Navbar extends Vue {
     .bottom {
       transform: rotate(-45deg);
       top: 40%;
+    }
+  }
+}
+.lang {
+  position: relative;
+  height: 60px;
+  margin-left: auto;
+  font-family: $heading-font;
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $transparent;
+    @include font(16px, bold, 20px);
+    padding: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+  &__dropdown {
+    position: absolute;
+    background-color: $white;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(opacity 0.3s ease, visibility 0.3s ease);
+    &.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    &__item {
+      // width: 50px;
+      padding: 10px 15px;
+      cursor: pointer;
+      color: $black;
+      @include transition(color 0.3s ease, background-color 0.3s ease);
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
     }
   }
 }

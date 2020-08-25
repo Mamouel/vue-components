@@ -1,5 +1,5 @@
 <template>
-  <div class="buttons wrapper">
+  <div class="buttons view wrapper">
     <h1>Buttons</h1>
     <div class="buttons__section">
       <h2>Basics</h2>
