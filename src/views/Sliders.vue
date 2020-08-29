@@ -1,6 +1,6 @@
 <template>
   <div class="sliders view wrapper">
-    <h1>Sliders</h1>
+    <h1>{{ text[0][getLang] }}</h1>
   </div>
 </template>
 
@@ -10,8 +10,18 @@ import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {},
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
+  }
 })
-export default class Sliders extends Vue {}
+export default class Sliders extends Vue {
+  private text: Object[] = [
+    {
+      en: "Sliders",
+      fr: "Curseurs",
+    },
+  ];
+}
 </script>
 
 <style lang="scss" scoped>

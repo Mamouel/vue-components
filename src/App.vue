@@ -63,8 +63,7 @@ body {
     }
     .app__wrapper {
       min-height: 100vh;
-      @include transition(margin-left, 0.3s, ease);
-      // padding-top: 100px;
+      @include transition(margin-left 0.3s ease);
       &.menu-open {
         margin-left: 300px;
       }

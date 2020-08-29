@@ -94,10 +94,11 @@ export default class CardBasic extends Vue {}
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      @include transition(opacity, 0.3s, ease);
-      @include transition(visibility, 0.3s, ease);
-      @include transition(height, 0.3s, ease);
-
+      @include transition(
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        height 0.3s ease
+      );
       &_avatar {
         width: 100px;
         height: 0;
@@ -107,9 +108,11 @@ export default class CardBasic extends Vue {}
         opacity: 0;
         visibility: hidden;
         @include background;
-        @include transition(opacity, 1s, ease);
-        @include transition(visibility, 1s, ease);
-        @include transition(height, 0.3s, ease);
+        @include transition(
+        opacity 1s ease,
+        visibility 1s ease,
+        height 0.3s ease
+      );
       }
       &_author {
         z-index: 100;
@@ -142,8 +145,8 @@ export default class CardBasic extends Vue {}
     right: 5px;
     width: 30px;
     height: 30px;
-    fill: $greyMed;
-    @include transition(fill, 0.3s, ease);
+    fill: $grey-med;
+    @include transition(fill 0.3s ease);
     &.favorite {
       fill: $primary;
       path {

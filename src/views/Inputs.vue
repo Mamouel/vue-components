@@ -1,6 +1,6 @@
 <template>
   <div class="inputs view wrapper">
-    <h1>Inputs</h1>
+    <h1>{{ text[0][getLang] }}</h1>
   </div>
 </template>
 
@@ -10,8 +10,18 @@ import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {},
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
+  },
 })
-export default class Inputs extends Vue {}
+export default class Inputs extends Vue {
+  private text: Object[] = [
+    {
+      en: "Inputs",
+      fr: "Champs de texte"
+    },
+  ]
+}
 </script>
 
 <style lang="scss" scoped>

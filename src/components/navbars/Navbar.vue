@@ -9,15 +9,19 @@
         </div>
       </div>
       <div class="lang">
-        <div class="lang__btn" @mouseover="displayLang = true" @mouseleave="displayLang = false">fr</div>
+        <div
+          class="lang__btn"
+          @mouseover="displayLang = true"
+          @mouseleave="displayLang = false"
+        >{{ getLang }}</div>
         <div
           class="lang__dropdown"
           :class="displayLang ? 'open' : 'closed'"
           @mouseover="displayLang = true"
           @mouseleave="displayLang = false"
         >
-          <div class="lang__dropdown__item" @click="changeLang('en')">English</div>
-          <div class="lang__dropdown__item" @click="changeLang('fr')">Francais</div>
+          <div class="lang__dropdown__item" @click="toggleLang('en')">English</div>
+          <div class="lang__dropdown__item" @click="toggleLang('fr')">Francais</div>
         </div>
       </div>
       <div class="search-input input-ctn flex flex_between">
@@ -43,7 +47,6 @@
         <span v-else>
           <IconDark />
         </span>
-
         <span
           class="navbar__theme_tooltip"
           :class="displayThemeTooltip ? 'open' : 'closed'"
@@ -53,16 +56,12 @@
         class="navbar__links flex"
         :class="[getMenuOpen ? 'open' : 'closed', getTheme ? 'dark' : 'light']"
       >
-        <router-link class="button secondary-btn" to="/">Home</router-link>
-        <router-link class="button secondary-btn" to="/buttons">Buttons</router-link>
-        <router-link class="button secondary-btn" to="/cards">Cards</router-link>
-        <router-link class="button secondary-btn" to="/dropdowns">Dropdowns</router-link>
-        <router-link class="button secondary-btn" to="/inputs">Inputs</router-link>
-        <router-link class="button secondary-btn" to="/lists">Lists</router-link>
-        <router-link class="button secondary-btn" to="/menus">Menus</router-link>
-        <router-link class="button secondary-btn" to="/popups">Popups</router-link>
-        <router-link class="button secondary-btn" to="/sliders">Sliders</router-link>
-        <router-link class="button secondary-btn" to="/slideshows">Slideshows</router-link>
+        <router-link
+          v-for="(item, index) in links"
+          :key="index"
+          class="button secondary-btn"
+          :to="item.to"
+        >{{ item.text[getLang] }}</router-link>
       </div>
     </div>
   </nav>
@@ -82,10 +81,12 @@ import IconLight from "@/assets/sun.svg";
   methods: {
     ...mapActions("menu", ["toggleMenu"]),
     ...mapActions("theme", ["toggleTheme"]),
+    ...mapActions("lang", ["toggleLang"]),
   },
   computed: {
     ...mapGetters("menu", ["getMenuOpen", "getStateLoading"]),
     ...mapGetters("theme", ["getTheme", "getStateLoading"]),
+    ...mapGetters("lang", ["getLang", "getStateLoading"]),
   },
 })
 export default class Navbar extends Vue {
@@ -100,6 +101,78 @@ export default class Navbar extends Vue {
       this.bodyScroll = false;
     }
   }
+  public links: object[] = [
+    {
+      to: "/",
+      text: {
+        en: "Home",
+        fr: "Accueil",
+      },
+    },
+    {
+      to: "/buttons",
+      text: {
+        en: "Buttons",
+        fr: "Boutons",
+      },
+    },
+    {
+      to: "/cards",
+      text: {
+        en: "Cards",
+        fr: "Cartes",
+      },
+    },
+    {
+      to: "/dropdowns",
+      text: {
+        en: "Dropdowns",
+        fr: "Listes déroulantes",
+      },
+    },
+    {
+      to: "/inputs",
+      text: {
+        en: "Inputs",
+        fr: "Champs de texte",
+      },
+    },
+    {
+      to: "/lists",
+      text: {
+        en: "Lists",
+        fr: "Listes",
+      },
+    },
+    {
+      to: "/menus",
+      text: {
+        en: "Menus",
+        fr: "Menus",
+      },
+    },
+    {
+      to: "/popups",
+      text: {
+        en: "Popups",
+        fr: "Popups",
+      },
+    },
+    {
+      to: "/sliders",
+      text: {
+        en: "Sliders",
+        fr: "Curseurs",
+      },
+    },
+    {
+      to: "/slideshows",
+      text: {
+        en: "Slideshows",
+        fr: "Carrousels",
+      },
+    },
+  ];
   public created() {
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -118,7 +191,7 @@ export default class Navbar extends Vue {
   position: fixed;
   width: 100%;
   height: $navbarHeight;
-  @include transition(background-color, 0.3s, ease);
+  @include transition(background-color 0.3s ease);
   &__wrapper {
     width: 100%;
     max-width: 1800px;
@@ -153,7 +226,7 @@ export default class Navbar extends Vue {
     &_tooltip {
       position: absolute;
       padding: 5px 10px;
-      background-color: $greyDark;
+      background-color: $grey-dark;
       left: 0;
       top: 50px;
       color: $white;
@@ -177,7 +250,7 @@ export default class Navbar extends Vue {
     flex-direction: column;
     width: 300px;
     background-color: $white;
-    @include transition(transform, 0.3s, ease);
+    @include transition(transform 0.3s ease);
     height: 100vh;
     @include box-shadow(
       0 0 0 1px rgba(63, 63, 68, 0.05),
@@ -217,7 +290,7 @@ export default class Navbar extends Vue {
   }
 
   &__search-icon {
-    @include transition(background-color, 0.3s, ease);
+    @include transition(background-color 0.3s ease);
     border-radius: 50%;
     margin: 10px;
     padding: 15px;
@@ -235,7 +308,7 @@ export default class Navbar extends Vue {
       width: 30px;
       height: 30px;
       fill: $primary;
-      @include transition(fill, 0.3s, ease);
+      @include transition(fill 0.3s ease);
     }
   }
 
@@ -258,7 +331,7 @@ export default class Navbar extends Vue {
     padding: 10px;
   }
 
-  @include transition(background-color, 0.3s, ease);
+  @include transition(background-color 0.3s ease);
 
   &:hover {
     background-color: $primary;
@@ -286,7 +359,7 @@ export default class Navbar extends Vue {
       width: 100%;
       background-color: $primary;
       border-radius: 8px;
-      @include transition(all, 0.35s, cubic-bezier(0.26, 0.1, 0.27, 1.55));
+      @include transition(all 0.35s cubic-bezier(0.26, 0.1, 0.27, 1.55));
 
       @include mq(s) {
         height: 3px;

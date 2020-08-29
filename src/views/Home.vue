@@ -1,16 +1,15 @@
 <template>
   <div class="home view">
-    <Banner titleOne="VueJs Components" titleTwo="from scratch" />
+    <Banner :titleOne="text.bannerTitleOne[getLang]" :titleTwo="text.bannerTitleTwo[getLang]" />
     <div class="home__desc wrapper">
-      <p>Welcome to my vue-components personnal project</p>
-      <p>All components in this app are made from scratch, with Vue CLI 3, Typescript and SCSS</p>
-      <p>App state is managed with Vuex</p>
-      <p>The main purpose of this work is to create a reusable component library</p>
+      <p v-for="(item, index) in text.description[getLang]" :key="index">
+        {{ item }}
+      </p>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 import Banner from "@/components/banners/Banner.vue";
@@ -18,8 +17,36 @@ import Banner from "@/components/banners/Banner.vue";
   components: {
     Banner,
   },
+  computed: {
+    ...mapGetters("lang", ["getLang", "getStateLoading"]),
+  },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  public text: Object = {
+    bannerTitleOne: {
+      en: "VueJS Components",
+      fr: "Composants VueJS",
+    },
+    bannerTitleTwo: {
+      en: "from scratch",
+      fr: "de zéro",
+    },
+    description: {
+      en: [
+        "Welcome to my vue-components personnal project",
+        "All components in this app are made from scratch, with Vue CLI 3, Typescript and SCSS",
+        "App state is managed with Vuex",
+        "The main purpose of this work is to create a reusable component library",
+      ],
+      fr: [
+        "Bienvenue sur mon projet personnel vue-components",
+        "Tous les composants de cette app sont faits de zéro, avec Vue CLI 3, Typescript et SCSS",
+        "Vuex est utilisé pour le state management",
+        "Le but principal de ce travail est de créer une bibliothèque de composants réutilisables",
+      ],
+    },
+  };
+}
 </script>
 
 <style lang="scss" scoped>

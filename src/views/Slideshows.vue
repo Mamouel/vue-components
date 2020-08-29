@@ -1,6 +1,7 @@
 <template>
   <div class="slideshows view wrapper">
-    <h1>Slideshows</h1>
+    <h1>{{ text[0][getLang] }}</h1>
+    <h2>{{ text[1][getLang] }}</h2>
     <SlideshowBasic />
   </div>
 </template>
@@ -13,10 +14,24 @@ import SlideshowBasic from "@/components/slideshows/SlideshowBasic.vue";
 
 @Component({
   components: {
-    SlideshowBasic
+    SlideshowBasic,
+  },
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
   },
 })
-export default class Slideshows extends Vue {}
+export default class Slideshows extends Vue {
+  private text: Object[] = [
+    {
+      en: "Slideshows",
+      fr: "Carrousels",
+    },
+    {
+      en: "Basic",
+      fr: "Basique",
+    },
+  ];
+}
 </script>
 
 <style lang="scss" scoped>

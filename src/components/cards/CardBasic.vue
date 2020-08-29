@@ -66,9 +66,9 @@ export default class CardBasic extends Vue {}
       right: 5px;
       width: 30px;
       height: 30px;
-      fill: $greyMed;
+      fill: $grey-med;
       cursor: pointer;
-      @include transition(fill, 0.3s, ease);
+      @include transition(fill 0.3s ease);
       &.favorite {
         fill: $primary;
         path {

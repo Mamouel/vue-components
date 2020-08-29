@@ -1,6 +1,6 @@
 <template>
   <div class="menus view wrapper">
-    <h1>Menus</h1>
+    <h1>{{ text[0][getLang] }}</h1>
   </div>
 </template>
 
@@ -10,8 +10,18 @@ import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {},
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
+  }
 })
-export default class Menus extends Vue {}
+export default class Menus extends Vue {
+  private text: Object[] = [
+    {
+      en: "Menus",
+      fr: "Menus",
+    },
+  ];
+}
 </script>
 
 <style lang="scss" scoped>

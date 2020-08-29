@@ -104,8 +104,8 @@
     svg {
       width: 25px;
       height: 25px;
-      fill: $greyDark;
-      @include transition(fill, 0.3s, ease);
+      fill: $grey-dark;
+      @include transition(fill 0.3s ease);
     }
   }
   .search-input {

@@ -57,7 +57,7 @@ export default class DropdownBasic extends Vue {
       padding: 10px;
       cursor: pointer;
       &:hover {
-        background-color: $greyDark;
+        background-color: $grey-dark;
       }
     }
   }

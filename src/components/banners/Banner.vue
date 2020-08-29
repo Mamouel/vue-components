@@ -14,6 +14,7 @@ import { mapActions, mapGetters } from "vuex";
 @Component({
   computed: {
     ...mapGetters("theme", ["getTheme", "getStateLoading"]),
+    ...mapGetters("lang", ["getLang", "getStateLoading"]),
   }
 })
 export default class Banner extends Vue {
@@ -35,7 +36,7 @@ export default class Banner extends Vue {
     background-color: $black;
   }
   &.light {
-    background-color: $greyLight;
+    background-color: $grey-light;
   }
   &__title {
     display: flex;
@@ -53,7 +54,7 @@ export default class Banner extends Vue {
     }
     &_bold {
       @include font(72px, bold, 75px);
-      color: $primaryLight;
+      color: $primary-light;
       @include mq(l) {
         @include font(48px, normal, 50px);
       }
@@ -70,7 +71,7 @@ export default class Banner extends Vue {
       border-color: transparent transparent transparent $black;
     }
     &.light {
-      border-color: transparent transparent transparent $greyLight;
+      border-color: transparent transparent transparent $grey-light;
     }
   }
 }

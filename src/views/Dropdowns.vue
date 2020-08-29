@@ -1,6 +1,6 @@
 <template>
   <div class="dropdowns view wrapper">
-    <h1>Dropdowns</h1>
+    <h1>{{ text[0][getLang] }}</h1>
     <DropdownBasic />
   </div>
 </template>
@@ -13,10 +13,20 @@ import DropdownBasic from "@/components/dropdowns/DropdownBasic.vue";
 
 @Component({
   components: {
-    DropdownBasic
+    DropdownBasic,
+  },
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
   },
 })
-export default class Dropdowns extends Vue {}
+export default class Dropdowns extends Vue {
+  private text: Object[] = [
+    {
+      en: "Dropdowns",
+      fr: "Listes déroulantes",
+    },
+  ];
+}
 </script>
 
 <style lang="scss" scoped>

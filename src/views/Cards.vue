@@ -1,15 +1,15 @@
 <template>
   <div class="cards view wrapper">
-    <h1>Cards</h1>
+    <h1>{{ text[0][getLang] }}</h1>
 
-    <h2>Basic</h2>
+    <h2>{{ text[1][getLang] }}</h2>
     <div class="cards__ctn flex">
       <CardBasic></CardBasic>
       <CardBasic></CardBasic>
       <CardBasic></CardBasic>
       <CardBasic></CardBasic>
     </div>
-    <h2>Basic</h2>
+    <h2>{{ text[2][getLang] }}</h2>
 
     <div class="cards__ctn flex">
       <CardImage></CardImage>
@@ -33,8 +33,26 @@ import CardImage from "@/components/cards/CardImage.vue";
     CardBasic,
     CardImage
   },
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
+  }
 })
-export default class Cards extends Vue {}
+export default class Cards extends Vue {
+  private text: Object[] = [
+    {
+      en: "Cards",
+      fr: "Cartes"
+    },
+    {
+      en: "Basic",
+      fr: "Basique"
+    },
+    {
+      en: "Image",
+      fr: "Image"
+    }
+  ]
+}
 </script>
 
 <style lang="scss" scoped>

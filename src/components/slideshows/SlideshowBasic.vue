@@ -1,6 +1,5 @@
 <template>
   <div class="slideshow-ctn relative">
-    <h2 class="slideshow-ctn__title">Basic</h2>
     <div
       v-if="displayPrevArrow"
       class="slideshow-ctn__arrow slideshow-ctn__arrow_left"
@@ -197,7 +196,7 @@ export default class SlideshowBasic extends Vue {
     z-index: 10;
     padding: 0 20px;
     cursor: pointer;
-    @include transition(transform, 0.3s, ease);
+    @include transition(transform 0.3s ease);
 
     @include mq(xs) {
       display: none;
@@ -208,7 +207,7 @@ export default class SlideshowBasic extends Vue {
         transform: scale(1.05);
 
         polyline {
-          color: $primaryDark;
+          color: $primary-dark;
         }
       }
     }
@@ -225,10 +224,10 @@ export default class SlideshowBasic extends Vue {
     svg {
       width: 70px;
       height: 70px;
-      @include transition(transform, 0.3s, ease);
+      @include transition(transform 0.3s ease);
 
       polyline {
-        @include transition(color, 0.3s, ease);
+        @include transition(color 0.3s ease);
         color: $primary;
       }
     }

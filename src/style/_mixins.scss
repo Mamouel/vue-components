@@ -22,15 +22,15 @@
   );
 }
 
-@mixin transition($what: all, $time: 0.3s, $how: ease-in-out) {
-  -webkit-transition: $what $time $how;
-  -moz-transition: $what $time $how;
-  -ms-transition: $what $time $how;
-  -o-transition: $what $time $how;
-  transition: $what $time $how;
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
 
-@mixin rounded($radius: 0.4rem) {
+@mixin rounded($radius: 0.3rem) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
@@ -44,7 +44,7 @@
 
 @mixin background(
   $background-size: cover,
-  $background-color: $greyDark,
+  $background-color: $grey-dark,
   $background-position: center,
   $background-repeat: no-repeat
 ) {

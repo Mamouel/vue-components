@@ -10,8 +10,18 @@ import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {},
+  computed: {
+    ...mapGetters("lang", ["getLang"]),
+  }
 })
-export default class Lists extends Vue {}
+export default class Lists extends Vue {
+  private text: Object[] = [
+    {
+      en: "Lists",
+      fr: "Listes",
+    },
+  ];
+}
 </script>
 
 <style lang="scss" scoped>
