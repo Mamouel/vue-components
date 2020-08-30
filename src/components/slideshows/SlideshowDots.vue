@@ -40,13 +40,17 @@ import Mountain from "@/assets/mountain.jpg";
 import Lake from "@/assets/lake.jpg";
 import Wave from "@/assets/wave.jpg";
 
+interface slideType {
+  idx: number,
+  src: string
+}
 @Component({
   components: {
     IconChevronUp,
   },
 })
 export default class SlideshowDots extends Vue {
-  slides: Object[] = [
+  slides: slideType[] = [
     {
       idx: 1,
       src: Mountain
@@ -78,7 +82,7 @@ export default class SlideshowDots extends Vue {
     let newActive;
     const newIndex = this.active + amount;
     if (newIndex > this.slides.length) newActive = 1;
-    if (newIndex === 0) newActive = this.slides[0].idx;
+    if (newIndex === 0) newActive = 6;
     this.active = newActive || newIndex;
   }
   jump(index: number) {
@@ -114,8 +118,7 @@ export default class SlideshowDots extends Vue {
   justify-content: center;
   transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   @include transition(
-    color 0.2s ease,
-    background-color 0.3s ease,
+    color 0.3s ease,
     border 0.3s ease
   );
   svg {
@@ -123,9 +126,8 @@ export default class SlideshowDots extends Vue {
     height: 30px;
   }
   &:hover {
-    background-color: $whitish;
-    color: $black;
-    border: 2px solid $black;
+    color: $primary;
+    border: 2px solid $primary;
   }
 }
 
