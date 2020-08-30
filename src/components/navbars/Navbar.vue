@@ -24,7 +24,7 @@
           <div class="lang__dropdown__item" @click="toggleLang('fr')">Francais</div>
         </div>
       </div>
-      <div class="search-input input-ctn flex flex_between">
+      <!-- <div class="search-input input-ctn flex flex_between">
         <input
           class
           id="main-search"
@@ -34,7 +34,7 @@
           required="required"
           placeholder="input, button ..."
         />
-      </div>
+      </div> -->
       <div
         class="navbar__theme"
         @click="toggleTheme(!getTheme)"
