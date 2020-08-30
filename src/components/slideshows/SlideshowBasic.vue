@@ -43,7 +43,7 @@
 
     <div class="slideshow-ctn__slideshow" ref="content">
       <div v-for="(item, index) in fakeData" :key="index" class="slideshow-ctn__item">
-        <CardImage />
+        <CardImageText />
       </div>
     </div>
   </div>
@@ -52,12 +52,12 @@
 <script lang='ts'>
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
-import CardImage from "@/components/cards/CardImage.vue";
+import CardImageText from "@/components/cards/CardImageText.vue";
 import CardBasic from "@/components/cards/CardBasic.vue";
 
 @Component({
   components: {
-    CardImage,
+    CardImageText,
     CardBasic,
   },
 })

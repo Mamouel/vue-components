@@ -54,11 +54,8 @@ export default class CardBasic extends Vue {}
   &__content {
     box-sizing: border-box;
     background-color: $white;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    @include rounded;
     padding: 1.5rem;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
     position: relative;
     svg {
       position: absolute;

@@ -6,6 +6,11 @@
         <div class="card__image_overlay_author">username</div>
       </div>
     </div>
+    <div class="card__content card-content">
+      <IconHeart />
+      <h3>title</h3>
+      <h4>subtitle</h4>
+    </div>
   </div>
 </template>
 
@@ -18,7 +23,7 @@ import IconHeart from "@/assets/heart.svg";
     IconHeart,
   },
 })
-export default class CardImage extends Vue {}
+export default class CardImageText extends Vue {}
 </script>
 
 <style lang="scss" scoped>
@@ -71,8 +76,9 @@ export default class CardImage extends Vue {}
     overflow: hidden;
     position: relative;
     height: 200px;
-    @include rounded;
-    background-image: url("~@/assets/lake.jpg");
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-image: url("~@/assets/wave.jpg");
     @include background;
     &_overlay {
       position: absolute;
@@ -104,7 +110,7 @@ export default class CardImage extends Vue {}
         opacity: 0;
         visibility: hidden;
         @include background;
-        background-image: url("~@/assets/donkey.jpg");
+        background-image: url("~@/assets/mountain.jpg");
 
         @include transition(
           opacity 1s ease,
@@ -120,6 +126,49 @@ export default class CardImage extends Vue {}
           "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       }
     }
+  }
+
+  &__content {
+    box-sizing: border-box;
+    background-color: $white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+.card-content {
+  padding: 1.5rem;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: relative;
+
+  svg {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    fill: $grey-med;
+    @include transition(fill 0.3s ease);
+    &.favorite {
+      fill: $primary;
+      path {
+        fill: $primary;
+      }
+    }
+    &:hover {
+      fill: $primary;
+    }
+  }
+
+  &_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &_title {
+    padding-right: 20px;
   }
 }
 </style>

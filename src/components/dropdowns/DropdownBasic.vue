@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <button @click="displayDropdown" class="dropdown__btn btn btn__secondary">click</button>
-    <div class="dropdown__ctn" :class="showDropdown ? 'show' : 'hide'">
+    <div class="dropdown__ctn" :class="[showDropdown ? 'show' : 'hide', getTheme ? 'dark' : 'light']">
       <p v-for="(item, index) in fakeData" :key="index">{{ item }}</p>
     </div>
   </div>
@@ -10,7 +10,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
-@Component({})
+@Component({
+  computed: {
+    ...mapGetters("theme", ["getTheme", "getStateLoading"]),
+  }
+})
 export default class DropdownBasic extends Vue {
   public showDropdown: boolean = false;
   public fakeData: string[] = ["test", "test", "test"];
@@ -52,10 +56,17 @@ export default class DropdownBasic extends Vue {
       visibility: hidden;
       opacity: 0;
     }
+    &.dark {
+      background-color: $grey-med;
+    }
+    &.light {
+      background-color: $whitish;
+    }
     p {
       margin: 0;
       padding: 10px;
       cursor: pointer;
+      @include transition(background-color 0.3s ease);
       &:hover {
         background-color: $grey-dark;
       }

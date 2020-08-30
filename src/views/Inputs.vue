@@ -18,9 +18,9 @@ export default class Inputs extends Vue {
   private text: Object[] = [
     {
       en: "Inputs",
-      fr: "Champs de texte"
+      fr: "Champs de texte",
     },
-  ]
+  ];
 }
 </script>
 
