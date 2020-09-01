@@ -67,11 +67,11 @@
     <div class="input-ctn flex flex_between">
       <select name="Category" v-model="selected" :class="getTheme ? 'dark' : 'light'">
         <option value selected disabled>Catégorie</option>
-        <option value="test">test</option>
-        <option value="x">X</option>
-        <option value="Vacances">Vacances</option>
-        <option value="Maul">Maul</option>
-        <option value="Limace">Limace</option>
+        <option value="Cat1">Cat1</option>
+        <option value="Cat2">Cat2</option>
+        <option value="Cat3">Cat3</option>
+        <option value="Cat4">Cat4</option>
+        <option value="Cat5">Cat5</option>
       </select>
       <span>{{selected}}</span>
     </div>
