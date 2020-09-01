@@ -1,0 +1,40 @@
+input,
+select,
+textarea {
+  border: 1px solid $grey-med;
+  @include rounded;
+  padding: 10px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: vertical;
+  width: 100%;
+  margin: 10px;
+  background-color: $transparent;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &.dark {
+    background-color: $blackest;
+    color: $white;
+  }
+  &.light {
+    background-color: $white;
+    color: $black;
+  }
+
+  &.half {
+    width: 50%;
+    flex: 1;
+  }
+
+  &.third {
+    width: 100% / 3;
+  }
+
+  &.quarter {
+    width: 25%;
+  }
+}

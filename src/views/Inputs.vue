@@ -1,6 +1,36 @@
 <template>
   <div class="inputs view wrapper">
     <h1>{{ text[0][getLang] }}</h1>
+    <div class="inputs__ctn flex">
+      <InputCustom
+        className=""
+        autocomplete="off"
+        name="Title"
+        type="text"
+        required="required"
+        placeholder="Title"
+      />
+      <InputCustom
+        className=""
+        autocomplete="off"
+        name="Title"
+        type="text"
+        required="required"
+        placeholder="Title"
+        btn=true
+        btnText="search"
+      />
+      <InputCustom
+        className=""
+        autocomplete="off"
+        name="Title"
+        type="text"
+        required="required"
+        placeholder="Title"
+        withIcon=true
+        icon="heart"
+      />
+    </div>
   </div>
 </template>
 
@@ -8,8 +38,12 @@
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 
+import InputCustom from "@/components/inputs/InputCustom.vue";
+
 @Component({
-  components: {},
+  components: {
+    InputCustom,
+  },
   computed: {
     ...mapGetters("lang", ["getLang"]),
   },
@@ -25,4 +59,10 @@ export default class Inputs extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+.inputs {
+  &__ctn {
+    
+  }
+}
 </style>

@@ -25,14 +25,13 @@
         </div>
       </div>
       <div class="search-input input-ctn flex flex_between">
-        <input
-          class
-          id="main-search"
+        <InputCustom
+          className="search-input"
           autocomplete="off"
-          name="Main search"
-          type="search"
+          name="Search"
+          type="text"
           required="required"
-          placeholder="input, button ..."
+          placeholder="Inputs, buttons..."
         />
       </div>
       <div
@@ -70,13 +69,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
+import InputCustom from "@/components/inputs/InputCustom.vue";
 import IconDark from "@/assets/moon.svg";
 import IconLight from "@/assets/sun.svg";
-
 @Component({
   components: {
     IconDark,
     IconLight,
+    InputCustom,
   },
   methods: {
     ...mapActions("menu", ["toggleMenu"]),
