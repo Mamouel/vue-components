@@ -24,16 +24,26 @@
           <div class="lang__dropdown__item" @click="toggleLang('fr')">Francais</div>
         </div>
       </div>
-      <div class="search-input input-ctn flex flex_between">
-        <InputCustom
-          className="search-input"
+      <div class="search-input input-ctn flex flex_between" :class="getTheme ? 'dark' : 'light'">
+        <input
+          class
+          id="main-search"
           autocomplete="off"
-          name="Search"
-          type="text"
+          name="Main search"
+          type="search"
           required="required"
-          placeholder="Inputs, buttons..."
+          v-model="searchword"
+          @input="searchStories($event.target.value)"
+          :placeholder="searchPlaceholder[getLang]"
         />
-      </div> -->
+        <div class="search-results" v-if="searchword.length && searchResults.length">
+          <div v-for="(item, index) in searchResults" :key="index">
+            <router-link :to="item.path">
+              <span @click="searchword = ''">{{item.meta[getLang]}}</span>
+            </router-link>
+          </div>
+        </div>
+      </div>
       <div
         class="navbar__theme"
         @click="toggleTheme(!getTheme)"
@@ -93,7 +103,9 @@ export default class Navbar extends Vue {
   public bodyScroll: boolean = false;
   public displayLang: boolean = false;
   public displayThemeTooltip: boolean = false;
-  public displaySearchInput: boolean = false;
+  public searchword: string = "";
+  public searchResults: object[] = [];
+  public getLang!: string; 
   public handleScroll() {
     if (window.scrollY > 0) {
       this.bodyScroll = true;
@@ -101,6 +113,23 @@ export default class Navbar extends Vue {
       this.bodyScroll = false;
     }
   }
+  public searchStories(value: string) {
+    if (value && value.length > 2) {
+      this.searchword = value.trim().toLowerCase();
+      this.searchResults = (this.$router as any).options.routes.filter(
+        (item: any) => {
+          return item.meta['en'].toLowerCase().includes(this.searchword) || item.meta['fr'].toLowerCase().includes(this.searchword);
+        }
+      );
+      console.log(this.searchResults);
+    } else {
+      this.searchResults = [];
+    }
+  }
+  public searchPlaceholder: Object = {
+    en: "Buttons, inputs...",
+    fr: "Buttons, inputs...",
+  };
   public links: object[] = [
     {
       to: "/",
@@ -174,6 +203,7 @@ export default class Navbar extends Vue {
     },
   ];
   public created() {
+    console.log(this.$router.options.routes);
     window.addEventListener("scroll", this.handleScroll);
   }
   public destroyed() {
@@ -311,9 +341,68 @@ export default class Navbar extends Vue {
       @include transition(fill 0.3s ease);
     }
   }
-
-  &__search-input {
-    margin-right: auto;
+  .lang {
+    position: relative;
+    height: 60px;
+    margin-left: auto;
+    font-family: $heading-font;
+    &__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $transparent;
+      @include font(16px, bold, 20px);
+      padding: 20px;
+      text-transform: capitalize;
+      cursor: pointer;
+    }
+    &__dropdown {
+      position: absolute;
+      background-color: $white;
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity 0.3s ease, visibility 0.3s ease);
+      &.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      &__item {
+        // width: 50px;
+        padding: 10px 15px;
+        cursor: pointer;
+        color: $black;
+        @include transition(color 0.3s ease, background-color 0.3s ease);
+        &:hover {
+          background-color: $primary;
+          color: $white;
+        }
+      }
+    }
+  }
+  .search-input {
+    position: relative;
+    &.dark {
+      input {
+        color: $white;
+      }
+    }
+    .search-results {
+      position: absolute;
+      background-color: $grey-med;
+      padding: 20px;
+      top: 50px;
+      margin-left: 10px;
+      a {
+        @include font(18px, bold, 30px);
+        text-decoration: none;
+        color: $black;
+        width: 100%;
+        @include transition(color 0.3s ease);
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
   }
 }
 
@@ -391,44 +480,6 @@ export default class Navbar extends Vue {
     .bottom {
       transform: rotate(-45deg);
       top: 40%;
-    }
-  }
-}
-.lang {
-  position: relative;
-  height: 60px;
-  margin-left: auto;
-  font-family: $heading-font;
-  &__btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $transparent;
-    @include font(16px, bold, 20px);
-    padding: 20px;
-    text-transform: capitalize;
-    cursor: pointer;
-  }
-  &__dropdown {
-    position: absolute;
-    background-color: $white;
-    opacity: 0;
-    visibility: hidden;
-    @include transition(opacity 0.3s ease, visibility 0.3s ease);
-    &.open {
-      opacity: 1;
-      visibility: visible;
-    }
-    &__item {
-      // width: 50px;
-      padding: 10px 15px;
-      cursor: pointer;
-      color: $black;
-      @include transition(color 0.3s ease, background-color 0.3s ease);
-      &:hover {
-        background-color: $primary;
-        color: $white;
-      }
     }
   }
 }

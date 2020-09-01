@@ -16,7 +16,7 @@
         name="Title"
         type="text"
         required="required"
-        placeholder="Title"
+        placeholder="Search"
         btn=true
         btnText="search"
       />
@@ -28,7 +28,18 @@
         required="required"
         placeholder="Title"
         withIcon=true
-        icon="heart"
+        icon="search"
+      />
+      <InputCustom
+        className=""
+        autocomplete="off"
+        name="Title"
+        type="text"
+        required="required"
+        placeholder="Title"
+        btn=true
+        withIcon=true
+        icon="search"
       />
     </div>
   </div>

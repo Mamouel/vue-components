@@ -1,7 +1,7 @@
 <template>
   <div class="input-ctn relative">
     <input
-      :class="[className, getTheme ? 'dark' : 'light']"
+      :class="[className, getTheme ? 'dark' : 'light', btn && 'half-rounded']"
       :id="id"
       :autocomplete="autocomplete"
       :name="name"
@@ -11,8 +11,11 @@
       @input="$emit('update:value', $event.target.value);"
     />
     <span class="floating-label" :class="getTheme ? 'dark' : 'light'">{{ placeholder }}</span>
-    <button v-if="btn">{{ btnText }}</button>
-    <!-- <inline-svg :src="require(`../assets/${icon}.svg`)"/> -->
+    <button class="btn input-btn" v-if="btn && !withIcon">{{ btnText }}</button>
+    <button class="btn input-btn" v-if="btn && withIcon">
+      <font-awesome-icon v-if="withIcon" :icon="icon" />
+    </button>
+    <font-awesome-icon v-if="withIcon && !btn" :icon="icon" />
   </div>
 </template>
 
@@ -22,6 +25,9 @@ import { mapActions, mapGetters } from "vuex";
 import IconHeart from "@/assets/heart.svg";
 
 @Component({
+  components: {
+    IconHeart,
+  },
   computed: {
     ...mapGetters("theme", ["getTheme", "getStateLoading"]),
   },
@@ -38,10 +44,7 @@ export default class InputCustom extends Vue {
   @Prop({ type: String }) public btn!: boolean;
   @Prop({ type: String }) public btnText!: string;
   @Prop({ type: String }) public withIcon!: boolean;
-  @Prop({ type: String }) public icon!: string;
-  mounted() {
-    console.log(this.icon);
-  }
+  @Prop({ type: String }) public icon!: String;
 }
 </script>
 
@@ -54,6 +57,9 @@ export default class InputCustom extends Vue {
   align-items: center;
   &.half {
     width: 50%;
+  }
+  svg {
+    margin-left: 15px;
   }
   input:focus ~ .floating-label,
   input:not(:focus):valid ~ .floating-label {
@@ -97,6 +103,21 @@ export default class InputCustom extends Vue {
     transition: 0.2s ease all;
     &_textarea {
       top: 30px;
+    }
+  }
+
+  .input-btn {
+    padding: 10px;
+    @include rounded;
+    @include font();
+
+    margin: 10px;
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid #d1cfcf;
+    svg {
+      margin: 0px;
     }
   }
 }
