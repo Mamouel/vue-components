@@ -2,7 +2,7 @@
   <div class="accordion">
     <ul class="accordion__list">
       <li class="accordion__item" v-for="index in list" :key="index._id">
-        <button
+        <div
           class="accordion__btn"
           :class="contentVisible === index._id ? 'show' : 'hide'"
           @click="contentVisible === index._id ? contentVisible = '' : contentVisible = index._id"
@@ -11,7 +11,7 @@
           <span>
             <IconChevronUp />
           </span>
-        </button>
+        </div>
 
         <p
           class="accordion__content"
@@ -76,9 +76,9 @@ export default class AccordionBasic extends Vue {
     display: flex;
     justify-content: space-between;
     align-content: center;
-    padding: 5px 10px;
+    padding: 15px;
     margin: 0;
-    outline: none;
+    border: 1px solid $grey-light;
     @include font(18px, bold, 18px);
     span {
       display: flex;
@@ -107,9 +107,9 @@ export default class AccordionBasic extends Vue {
     // background-color: $grey-med;
     @include transition(
       height 0.1s ease,
-      visibility 0.3s ease,
-      opacity 0.3s ease,
-      padding 0.2s ease
+      visibility 0.1s ease,
+      opacity 0.1s ease,
+      padding 0.3s ease
     );
     &.show {
       visibility: visible;

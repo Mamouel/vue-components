@@ -1,7 +1,7 @@
 <template>
   <div class="input-ctn relative">
     <input
-      :class="[className, getTheme ? 'dark' : 'light', btn && 'half-rounded']"
+      :class="[className, getTheme ? 'dark' : 'light']"
       :id="id"
       :autocomplete="autocomplete"
       :name="name"
@@ -15,7 +15,9 @@
     <button class="btn input-btn" v-if="btn && withIcon">
       <font-awesome-icon v-if="withIcon" :icon="icon" />
     </button>
-    <font-awesome-icon v-if="withIcon && !btn" :icon="icon" />
+    <span class="input-icon">
+      <font-awesome-icon v-if="withIcon && !btn" :icon="icon" />
+    </span>
   </div>
 </template>
 
@@ -58,8 +60,12 @@ export default class InputCustom extends Vue {
   &.half {
     width: 50%;
   }
-  svg {
-    margin-left: 15px;
+  .input-icon {
+    position: absolute;
+    right: 10px;
+    svg {
+      color: $grey-med;
+    }
   }
   input:focus ~ .floating-label,
   input:not(:focus):valid ~ .floating-label {
@@ -110,12 +116,14 @@ export default class InputCustom extends Vue {
     padding: 10px;
     @include rounded;
     @include font();
-
-    margin: 10px;
-    margin-left: 0;
+    box-shadow: none!important;
+    position: absolute;
+    right: 0;
+    margin: 10px 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border: 1px solid #d1cfcf;
+    border-left: 1px solid #d1cfcf;
+    border-right: 1px solid #d1cfcf;
     svg {
       margin: 0px;
     }
