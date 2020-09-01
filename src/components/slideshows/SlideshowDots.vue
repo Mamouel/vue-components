@@ -1,12 +1,18 @@
 <template>
   <div class="slideshow relative">
-    <div class="buttons">
+    <!-- <div class="buttons">
       <button class="btn" @click="removeSlide" :disabled="slides <= 2">Remove Slide</button>
       <button class="btn" @click="addSlide" :disabled="slides >= 10">Add Slide</button>
-    </div>
+    </div> -->
     <div class="slides">
-      <div v-for="index in slides" :key="index" :class="index == active ? 'active' : 'unactive'">
-        <div v-if="index == active">Slide {{ index }}</div>
+      <div
+        class="slide"
+        v-for="item in slides"
+        :key="item.idx"
+        :class="item.idx == active ? 'active ' : 'unactive'"
+        :style="{ backgroundImage: `url(${item.src})` }"
+      >
+        <div v-if="item.idx == active">Slide {{ item.idx }}</div>
       </div>
     </div>
     <span class="prev" @click="move(-1)">
@@ -30,32 +36,64 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { mapActions, mapGetters } from "vuex";
 import IconChevronUp from "@/assets/chevron-up.svg";
+import Mountain from "@/assets/mountain.jpg";
+import Lake from "@/assets/lake.jpg";
+import Wave from "@/assets/wave.jpg";
 
+interface slideType {
+  idx: number,
+  src: string
+}
 @Component({
   components: {
     IconChevronUp,
   },
 })
 export default class SlideshowDots extends Vue {
-  slides: number = 5;
+  slides: slideType[] = [
+    {
+      idx: 1,
+      src: Mountain
+    },
+    {
+      idx: 2,
+      src: Lake
+    },
+    {
+      idx: 3,
+      src: Wave
+    },
+    {
+      idx: 4,
+      src: Mountain
+    },
+    {
+      idx: 5,
+      src: Wave
+    },
+    {
+      idx: 6,
+      src: Lake
+    }
+  ];
   active: number = 1;
 
   move(amount: number) {
     let newActive;
     const newIndex = this.active + amount;
-    if (newIndex > this.slides) newActive = 1;
-    if (newIndex === 0) newActive = this.slides;
+    if (newIndex > this.slides.length) newActive = 1;
+    if (newIndex === 0) newActive = 6;
     this.active = newActive || newIndex;
   }
   jump(index: number) {
     this.active = index;
   }
-  addSlide() {
-    this.slides = this.slides + 1;
-  }
-  removeSlide() {
-    this.slides = this.slides - 1;
-  }
+  // addSlide() {
+  //   this.slides = this.slides + 1;
+  // }
+  // removeSlide() {
+  //   this.slides = this.slides - 1;
+  // }
 }
 </script>
 
@@ -80,8 +118,7 @@ export default class SlideshowDots extends Vue {
   justify-content: center;
   transition: color 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   @include transition(
-    color 0.2s ease,
-    background-color 0.3s ease,
+    color 0.3s ease,
     border 0.3s ease
   );
   svg {
@@ -89,9 +126,8 @@ export default class SlideshowDots extends Vue {
     height: 30px;
   }
   &:hover {
-    background-color: $whitish;
-    color: $black;
-    border: 2px solid $black;
+    color: $primary;
+    border: 2px solid $primary;
   }
 }
 
@@ -115,10 +151,11 @@ export default class SlideshowDots extends Vue {
 }
 
 .dots {
-  position: fixed;
+  position: absolute;
   display: block;
   width: 100%;
   text-align: center;
+  bottom: 10px;
   li {
     width: 6px;
     height: 6px;
@@ -146,15 +183,10 @@ export default class SlideshowDots extends Vue {
   .slides {
     font-size: 40px;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     font-weight: bold;
     width: 100%;
-    @include background();
-    background-image: url("~@/assets/lake.jpg");
     height: 400px;
-
     @media (min-width: 600px) {
       font-size: 80px;
     }
@@ -163,25 +195,64 @@ export default class SlideshowDots extends Vue {
       font-size: 100px;
     }
 
-    .active {
-      @include transition(
-        transform 0.5s ease,
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        left 0.3s ease
-      );
-      opacity: 1;
-      visibility: visible;
-    }
-    .unactive {
-      @include transition(
-        transform 0.5s ease,
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        left 0.3s ease
-      );
-      opacity: 0;
-      visibility: hidden;
+    .slide {
+      @include background();
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.active {
+        @include transition(
+          transform 0.5s ease,
+          opacity 0.3s ease,
+          visibility 0.3s ease,
+          left 0.3s ease
+        );
+        height: 100%;
+        opacity: 1;
+        visibility: visible;
+      }
+      &.unactive {
+        @include transition(
+          transform 0.5s ease,
+          opacity 0.3s ease,
+          visibility 0.3s ease,
+          left 0.3s ease
+        );
+        opacity: 0;
+        visibility: hidden;
+      }
+      &.slide1 {
+        background-image: url("~@/assets/lake.jpg");
+      }
+      &.slide2 {
+        background-image: url("~@/assets/mountain.jpg");
+      }
+      &.slide3 {
+        background-image: url("~@/assets/wave.jpg");
+      }
+      &.slide4 {
+        background-image: url("~@/assets/lake.jpg");
+      }
+      &.slide5 {
+        background-image: url("~@/assets/mountain.jpg");
+      }
+      &.slide6 {
+        background-image: url("~@/assets/wave.jpg");
+      }
+      &.slide7 {
+        background-image: url("~@/assets/lake.jpg");
+      }
+      &.slide8 {
+        background-image: url("~@/assets/mountain.jpg");
+      }
+      &.slide9 {
+        background-image: url("~@/assets/wave.jpg");
+      }
+      &.slide10 {
+        background-image: url("~@/assets/lake.jpg");
+      }
+
     }
   }
 }

@@ -33,7 +33,7 @@
           required="required"
           placeholder="Inputs, buttons..."
         />
-      </div>
+      </div> -->
       <div
         class="navbar__theme"
         @click="toggleTheme(!getTheme)"
