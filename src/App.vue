@@ -52,7 +52,7 @@ body {
     }
     &.dark {
       background-color: $blackest;
-      color: white;
+      color: $white;
     }
     & * {
       box-sizing: border-box;

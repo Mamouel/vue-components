@@ -1,17 +1,24 @@
 <template>
-  <div class="home view">
-    <Banner :titleOne="text.bannerTitleOne[getLang]" :titleTwo="text.bannerTitleTwo[getLang]" />
-    <div class="home__desc wrapper">
-      <p v-for="(item, index) in text.description[getLang]" :key="index">
-        {{ item }}
-      </p>
-    </div>
+<div class="home view">
+  <Banner :titleOne="text.bannerTitleOne[getLang]" :titleTwo="text.bannerTitleTwo[getLang]" />
+  <div class="home__desc wrapper">
+    <p v-for="(item, index) in text.description[getLang]" :key="index">
+      {{ item }}
+    </p>
   </div>
+</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { mapActions, mapGetters } from "vuex";
+import {
+  Component,
+  Vue,
+  Prop
+} from "vue-property-decorator";
+import {
+  mapActions,
+  mapGetters
+} from "vuex";
 import Banner from "@/components/banners/Banner.vue";
 @Component({
   components: {
@@ -28,8 +35,8 @@ export default class Home extends Vue {
       fr: "Composants VueJS",
     },
     bannerTitleTwo: {
-      en: "from scratch",
-      fr: "de zéro",
+      en: "",
+      fr: "",
     },
     description: {
       en: [
@@ -51,8 +58,10 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
 @import "../style/index.scss";
+
 .home {
   padding-top: $navbarHeight;
+
   &__desc {
     padding-top: 150px;
   }

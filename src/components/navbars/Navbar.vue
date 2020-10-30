@@ -105,7 +105,7 @@ export default class Navbar extends Vue {
   public displayThemeTooltip: boolean = false;
   public searchword: string = "";
   public searchResults: object[] = [];
-  public getLang!: string; 
+  public getLang!: string;
   public handleScroll() {
     if (window.scrollY > 0) {
       this.bodyScroll = true;
@@ -118,7 +118,10 @@ export default class Navbar extends Vue {
       this.searchword = value.trim().toLowerCase();
       this.searchResults = (this.$router as any).options.routes.filter(
         (item: any) => {
-          return item.meta['en'].toLowerCase().includes(this.searchword) || item.meta['fr'].toLowerCase().includes(this.searchword);
+          return (
+            item.meta["en"].toLowerCase().includes(this.searchword) ||
+            item.meta["fr"].toLowerCase().includes(this.searchword)
+          );
         }
       );
       console.log(this.searchResults);
@@ -180,20 +183,20 @@ export default class Navbar extends Vue {
         fr: "Menus",
       },
     },
-    {
-      to: "/popups",
-      text: {
-        en: "Popups",
-        fr: "Popups",
-      },
-    },
-    {
-      to: "/sliders",
-      text: {
-        en: "Sliders",
-        fr: "Curseurs",
-      },
-    },
+    // {
+    //   to: "/popups",
+    //   text: {
+    //     en: "Popups",
+    //     fr: "Popups",
+    //   },
+    // },
+    // {
+    //   to: "/sliders",
+    //   text: {
+    //     en: "Sliders",
+    //     fr: "Curseurs",
+    //   },
+    // },
     {
       to: "/slideshows",
       text: {
@@ -222,23 +225,34 @@ export default class Navbar extends Vue {
   width: 100%;
   height: $navbarHeight;
   @include transition(background-color 0.3s ease);
+  &.light {
+    color: $black;
+  }
+
+  &.dark {
+    color: $white;
+  }
   &__wrapper {
     width: 100%;
     max-width: 1800px;
     margin: 0;
     height: 100%;
   }
+
   &_scrolled {
     @include box-shadow(
       0 0 0 1px rgba(63, 63, 68, 0.05),
       0 1px 3px 0 rgba(63, 63, 68, 0.15)
     );
+
     &.light {
       background-color: $whitish;
     }
+
     &.dark {
       background-color: $black;
       color: white;
+
       a {
         text-decoration: none;
         color: $white;
@@ -250,9 +264,11 @@ export default class Navbar extends Vue {
     padding: 1rem 2rem;
     cursor: pointer;
     position: relative;
+
     &:hover {
       color: $primary;
     }
+
     &_tooltip {
       position: absolute;
       padding: 5px 10px;
@@ -264,6 +280,7 @@ export default class Navbar extends Vue {
       visibility: hidden;
       opacity: 0;
       transition: opacity 0.3s ease, visibility 0.3s ease;
+
       &.open {
         visibility: visible;
         opacity: 1;
@@ -294,12 +311,15 @@ export default class Navbar extends Vue {
     &.closed {
       transform: translateX(-100%);
     }
+
     &.light {
       background-color: $whitish;
     }
+
     &.dark {
       background-color: $black;
       color: white;
+
       a {
         text-decoration: none;
         color: $white;
@@ -325,8 +345,10 @@ export default class Navbar extends Vue {
     margin: 10px;
     padding: 15px;
     cursor: pointer;
+
     &:hover {
       background-color: $primary;
+
       svg {
         width: 30px;
         height: 30px;
@@ -341,11 +363,13 @@ export default class Navbar extends Vue {
       @include transition(fill 0.3s ease);
     }
   }
+
   .lang {
     position: relative;
     height: 60px;
     margin-left: auto;
     font-family: $heading-font;
+
     &__btn {
       display: flex;
       justify-content: center;
@@ -356,22 +380,26 @@ export default class Navbar extends Vue {
       text-transform: capitalize;
       cursor: pointer;
     }
+
     &__dropdown {
       position: absolute;
       background-color: $white;
       opacity: 0;
       visibility: hidden;
       @include transition(opacity 0.3s ease, visibility 0.3s ease);
+
       &.open {
         opacity: 1;
         visibility: visible;
       }
+
       &__item {
         // width: 50px;
         padding: 10px 15px;
         cursor: pointer;
         color: $black;
         @include transition(color 0.3s ease, background-color 0.3s ease);
+
         &:hover {
           background-color: $primary;
           color: $white;
@@ -379,25 +407,30 @@ export default class Navbar extends Vue {
       }
     }
   }
+
   .search-input {
     position: relative;
+
     &.dark {
       input {
         color: $white;
       }
     }
+
     .search-results {
       position: absolute;
       background-color: $grey-med;
       padding: 20px;
       top: 50px;
       margin-left: 10px;
+
       a {
         @include font(18px, bold, 30px);
         text-decoration: none;
         color: $black;
         width: 100%;
         @include transition(color 0.3s ease);
+
         &:hover {
           color: $primary;
         }
