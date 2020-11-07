@@ -1,5 +1,5 @@
 <template>
-  <button @click="logAlert" class="ripple" :class="classProp">
+  <button @click="$emit('propevent')" class="ripple" :class="classProp">
     <slot></slot>
   </button>
 </template>
@@ -10,9 +10,6 @@ import { mapActions, mapGetters } from "vuex";
 @Component({})
 export default class Button extends Vue {
   @Prop({ type: String }) private classProp!: string;
-  logAlert() {
-    this.$emit("log");
-  }
 }
 </script>
 

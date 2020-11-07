@@ -183,13 +183,13 @@ export default class Navbar extends Vue {
         fr: "Menus",
       },
     },
-    // {
-    //   to: "/popups",
-    //   text: {
-    //     en: "Popups",
-    //     fr: "Popups",
-    //   },
-    // },
+    {
+      to: "/popups",
+      text: {
+        en: "Popups",
+        fr: "Popups",
+      },
+    },
     // {
     //   to: "/sliders",
     //   text: {
