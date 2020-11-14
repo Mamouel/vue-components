@@ -5,6 +5,7 @@
     <DropdownBasic />
     <h2>{{ text[2][getLang] }}</h2>
 <AccordionBasic />
+<Accordion />
   </div>
 </template>
 
@@ -14,11 +15,13 @@ import { mapActions, mapGetters } from "vuex";
 
 import DropdownBasic from "@/components/dropdowns/DropdownBasic.vue";
 import AccordionBasic from "@/components/dropdowns/AccordionBasic.vue";
+import Accordion from "@/components/dropdowns/Accordion.vue";
 
 @Component({
   components: {
     DropdownBasic,
-    AccordionBasic
+    AccordionBasic,
+    Accordion
   },
   computed: {
     ...mapGetters("lang", ["getLang"]),
