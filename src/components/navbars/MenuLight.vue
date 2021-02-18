@@ -8,6 +8,12 @@
           <span class="line bottom"></span>
         </div>
       </div>
+      <div class="menu-light__links" :class="menuLightOpen ? 'open' : 'closed'">
+        <p>Home</p>
+        <p>About</p>
+        <p>Sevices</p>
+        <p>Contact</p>
+      </div>
       <div class="search-input input-ctn flex flex_between">
         <input
           class
@@ -53,9 +59,7 @@ export default class MenuLight extends Vue {
   public searchword: string = "";
   public searchResults: object[] = [];
   public getLang!: string;
-  
   public menuLightOpen: boolean = false;
-
   public searchPlaceholder: Object = {
     en: "search",
     fr: "rechercher",
@@ -70,8 +74,9 @@ export default class MenuLight extends Vue {
   background-color: $grey-light;
   height: $navbarHeight;
   @include transition(background-color 0.3s ease);
+  @include box-shadow();
   margin: 25px 0px;
-
+  position: relative;
   &__wrapper {
     width: 100%;
     max-width: 1800px;
@@ -79,35 +84,43 @@ export default class MenuLight extends Vue {
     height: 100%;
   }
 
+  &__links {
+    position: absolute;
+    top: $navbarHeight;
+    background-color: $grey-light;
+    color: $black;
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 200px;
+    @include transition(height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease);
+    &.closed {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    &.open {
+      height: 250px;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 
   .search-input {
-    margin-right: 20px; 
+    margin-right: 20px;
     &.dark {
       input {
         color: $white;
       }
     }
+    @include mq(s) {
+      max-width: 150px;
+    }
   }
 
   .menu-burger {
     background: $transparent;
-    z-index: 1000;
-    display: flex;
-    border-radius: 50%;
-    margin: 10px;
-    position: relative;
-    padding: 10px;
-    cursor: pointer;
-
-    @include mq(s) {
-      padding: 10px;
-    }
-
-    @include transition(background-color 0.3s ease);
-
     &:hover {
       background-color: $black;
-
       .menu-burger-btn {
         .line {
           background-color: $white;
@@ -126,45 +139,10 @@ export default class MenuLight extends Vue {
       }
 
       .line {
-        position: absolute;
-        height: 4px;
-        width: 100%;
         background-color: $black;
-        border-radius: 8px;
-        @include transition(all 0.35s cubic-bezier(0.26, 0.1, 0.27, 1.55));
-
-        @include mq(s) {
-          height: 3px;
-        }
-
-        &.top {
-          top: 0;
-          transform: rotate(0deg);
-        }
-
-        &.middle {
-          top: 50%;
-          transform: translateY(-50%);
-        }
-
-        &.bottom {
-          bottom: 0;
-        }
       }
     }
 
-    .menu-burger-btn.open {
-      .top {
-        transform: rotate(45deg);
-        top: 40%;
-      }
-
-      .middle,
-      .bottom {
-        transform: rotate(-45deg);
-        top: 40%;
-      }
-    }
   }
 }
 </style>

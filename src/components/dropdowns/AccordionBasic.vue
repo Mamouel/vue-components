@@ -106,15 +106,15 @@ export default class AccordionBasic extends Vue {
     padding: 0;
     // background-color: $grey-med;
     @include transition(
-      height 0.1s ease,
-      visibility 0.1s ease,
-      opacity 0.1s ease,
+      height 0.3s ease,
+      visibility 0.3s ease,
+      opacity 0.3s ease,
       padding 0.3s ease
     );
     &.show {
       visibility: visible;
       opacity: 1;
-      height: 100%;
+      height: 100px;
       padding: 20px;
     }
   }

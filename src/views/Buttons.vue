@@ -4,48 +4,48 @@
     <div class="buttons__section">
       <h2>{{ text[1][getLang] }}</h2>
       <div class="buttons__ctn flex">
-        <ButtonBasic @log="logAlert" classProp="btn">Basic</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_primary">Primary</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_secondary">Secondary</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_error">Error</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_warning">Warning</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_success">Success</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_small">Small</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn btn_large btn_secondary">Large</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn">Basic</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_primary">Primary</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_secondary">Secondary</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_error">Error</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_warning">Warning</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_success">Success</ButtonBasic>
+        <ButtonBasic @lopropeventg="logAlert" classProp="btn btn_small">Small</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_large btn_secondary">Large</ButtonBasic>
       </div>
     </div>
     <div class="buttons__section">
       <h2>{{ text[2][getLang] }}</h2>
       <div class="buttons__ctn flex">
-        <ButtonBasic @log="logAlert" classProp="btn-text">Basic</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn-text btn-text_primary">Primary</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn-text btn-text_secondary">Secondary</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn-text btn-text_error">Error</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn-text btn-text_warning">Warning</ButtonBasic>
-        <ButtonBasic @log="logAlert" classProp="btn-text btn-text_success">Success</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text">Basic</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text btn-text_primary">Primary</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text btn-text_secondary">Secondary</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text btn-text_error">Error</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text btn-text_warning">Warning</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn-text btn-text_success">Success</ButtonBasic>
       </div>
     </div>
     <div class="buttons__section">
       <h2>{{ text[3][getLang] }}</h2>
       <div class="buttons__ctn flex">
-        <ButtonBasic @log="logAlert" classProp="btn btn_round btn_secondary">round</ButtonBasic>
+        <ButtonBasic @propevent="logAlert" classProp="btn btn_round btn_secondary">round</ButtonBasic>
       </div>
     </div>
     <div class="buttons__section">
       <h2>{{ text[4][getLang] }}</h2>
       <div class="buttons__ctn flex">
-        <Button @log="logAlert" classProp="btn btn_secondary btn_round">Hover</Button>
-        <ButtonRipple @log="logAlert" classProp="btn btn_secondary btn_large">Click me</ButtonRipple>
-        <ButtonRipple2 @log="logAlert" classProp="btn btn_success">Click me</ButtonRipple2>
+        <Button @propevent="logAlert" classProp="btn btn_secondary btn_round">Hover</Button>
+        <ButtonRipple @propevent="logAlert" classProp="btn btn_secondary btn_large">Click me</ButtonRipple>
+        <ButtonRipple2 @propevent="logAlert" classProp="btn btn_success">Click me</ButtonRipple2>
       </div>
     </div>
     <div class="buttons__section">
       <h2>{{ text[5][getLang] }}</h2>
       <div class="buttons__ctn flex">
-        <ButtonRipple2 @log="logAlert" classProp="btn btn_icon btn_round btn_secondary">
+        <ButtonRipple2 @propevent="logAlert" classProp="btn btn_icon btn_round btn_secondary">
           <IconHeart />
         </ButtonRipple2>
-        <ButtonRipple2 @log="logAlert" classProp="btn-text-icon btn_secondary"><IconHeart />Like</ButtonRipple2>
+        <ButtonRipple2 @propevent="logAlert" classProp="btn-text-icon btn_secondary"><IconHeart />Like</ButtonRipple2>
       </div>
     </div>
   </div>

@@ -1,6 +1,16 @@
 <template>
-  <nav class="menu" :class="[bodyScroll ? 'menu_scrolled' : '', getTheme ? 'dark' : 'light']">
+  <nav
+    class="menu"
+    :class="[bodyScroll ? 'menu_scrolled' : '', getTheme ? 'dark' : 'light']"
+  >
     <div class="menu__wrapper wrapper flex flex_between">
+      <div class="menu-burger" @click="menuLightOpen = !menuLightOpen">
+        <div class="menu-burger-btn">
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </div>
+      </div>
       <div class="menu__links flex" :class="getTheme ? 'dark' : 'light'">
         <p>Accueil</p>
         <p>Contact</p>
@@ -10,27 +20,32 @@
           class="lang__btn"
           @mouseover="displayLang = true"
           @mouseleave="displayLang = false"
-        >{{ getLang }}</div>
+        >
+          {{ getLang }}
+        </div>
         <div
           class="lang__dropdown"
           :class="displayLang ? 'open' : 'closed'"
           @mouseover="displayLang = true"
           @mouseleave="displayLang = false"
         >
-          <div class="lang__dropdown__item" @click="toggleLang('en')">English</div>
-          <div class="lang__dropdown__item" @click="toggleLang('fr')">Francais</div>
+          <div class="lang__dropdown__item" @click="toggleLang('en')">
+            English
+          </div>
+          <div class="lang__dropdown__item" @click="toggleLang('fr')">
+            Francais
+          </div>
         </div>
       </div>
-      <div class="search-input input-ctn flex flex_between">
-        <input
-          class
-          id="main-search"
+      <div class="search-input flex flex_between">
+        <InputCustom
           autocomplete="off"
-          name="Main search"
-          type="search"
+          name="Search"
+          type="text"
           required="required"
-          v-model="searchword"
           :placeholder="searchPlaceholder[getLang]"
+          withIcon="true"
+          icon="search"
         />
       </div>
       <div
@@ -45,7 +60,8 @@
         <span
           class="menu__theme_tooltip"
           :class="displayThemeTooltip ? 'open' : 'closed'"
-        >Toggle {{ getTheme ? 'light' : 'dark' }} theme</span>
+          >Toggle {{ getTheme ? "light" : "dark" }} theme</span
+        >
       </div>
     </div>
   </nav>
@@ -101,6 +117,9 @@ export default class MenuBasic extends Vue {
     max-width: 1800px;
     margin: 0;
     height: 100%;
+    @include mq(m) {
+      flex-wrap: nowrap;
+    }
   }
 
   &__theme {
@@ -124,7 +143,7 @@ export default class MenuBasic extends Vue {
       visibility: hidden;
       opacity: 0;
       transition: opacity 0.3s ease, visibility 0.3s ease;
-
+      z-index: 20;
       &.open {
         visibility: visible;
         opacity: 1;
@@ -134,7 +153,9 @@ export default class MenuBasic extends Vue {
 
   &__links {
     z-index: 10;
-    width: 50%;
+    @include mq(l) {
+      display: none;
+    }
     p {
       @include font(18px, bold, 30px);
       text-decoration: none;
@@ -146,31 +167,11 @@ export default class MenuBasic extends Vue {
       &:hover {
         color: $primary;
       }
-    }
-  }
 
-  &__search-icon {
-    @include transition(background-color 0.3s ease);
-    border-radius: 50%;
-    margin: 10px;
-    padding: 15px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: $primary;
-
-      svg {
-        width: 30px;
-        height: 30px;
-        fill: $black;
+      @include mq(l) {
+        padding: 5px 25px;
+        @include font(14px, bold, 20px);
       }
-    }
-
-    svg {
-      width: 30px;
-      height: 30px;
-      fill: $primary;
-      @include transition(fill 0.3s ease);
     }
   }
 
@@ -205,7 +206,6 @@ export default class MenuBasic extends Vue {
       }
 
       &__item {
-        // width: 50px;
         padding: 10px 15px;
         cursor: pointer;
         color: $black;
@@ -219,10 +219,23 @@ export default class MenuBasic extends Vue {
     }
   }
 
-  .search-input {
-    &.dark {
-      input {
-        color: $white;
+  .menu-burger {
+    background: $transparent;
+    display: none;
+    @include mq(l) {
+      display: block;
+    }
+
+    &:hover {
+      .menu-burger-btn {
+        .line {
+          background-color: $primary;
+        }
+      }
+    }
+    .menu-burger-btn {
+      .line {
+        background-color: $black;
       }
     }
   }

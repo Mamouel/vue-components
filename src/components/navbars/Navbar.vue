@@ -183,13 +183,13 @@ export default class Navbar extends Vue {
         fr: "Menus",
       },
     },
-    // {
-    //   to: "/popups",
-    //   text: {
-    //     en: "Popups",
-    //     fr: "Popups",
-    //   },
-    // },
+    {
+      to: "/popups",
+      text: {
+        en: "Popups",
+        fr: "Popups",
+      },
+    },
     // {
     //   to: "/sliders",
     //   text: {
@@ -303,8 +303,11 @@ export default class Navbar extends Vue {
       0 0 0 1px rgba(63, 63, 68, 0.05),
       0 1px 3px 0 rgba(63, 63, 68, 0.15)
     );
+    @include mq(s) {
+      width: 250px;
+    }
 
-    @include mq(xxs) {
+    @include mq(xs) {
       width: 100vw;
     }
 
@@ -439,81 +442,5 @@ export default class Navbar extends Vue {
   }
 }
 
-.menu-burger {
-  background: $transparent;
-  z-index: 1000;
-  display: flex;
-  border-radius: 50%;
-  margin: 10px;
-  position: relative;
-  padding: 10px;
-  cursor: pointer;
 
-  @include mq(s) {
-    padding: 10px;
-  }
-
-  @include transition(background-color 0.3s ease);
-
-  &:hover {
-    background-color: $primary;
-
-    .menu-burger-btn {
-      .line {
-        background-color: $white;
-      }
-    }
-  }
-
-  .menu-burger-btn {
-    width: 20px;
-    height: 20px;
-    position: relative;
-
-    @include mq(s) {
-      width: 15px;
-      height: 15px;
-    }
-
-    .line {
-      position: absolute;
-      height: 4px;
-      width: 100%;
-      background-color: $primary;
-      border-radius: 8px;
-      @include transition(all 0.35s cubic-bezier(0.26, 0.1, 0.27, 1.55));
-
-      @include mq(s) {
-        height: 3px;
-      }
-
-      &.top {
-        top: 0;
-        transform: rotate(0deg);
-      }
-
-      &.middle {
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      &.bottom {
-        bottom: 0;
-      }
-    }
-  }
-
-  .menu-burger-btn.open {
-    .top {
-      transform: rotate(45deg);
-      top: 40%;
-    }
-
-    .middle,
-    .bottom {
-      transform: rotate(-45deg);
-      top: 40%;
-    }
-  }
-}
 </style>
