@@ -169,13 +169,13 @@ export default class Navbar extends Vue {
         fr: "Champs de texte",
       },
     },
-    {
-      to: "/lists",
-      text: {
-        en: "Lists",
-        fr: "Listes",
-      },
-    },
+    // {
+    //   to: "/lists",
+    //   text: {
+    //     en: "Lists",
+    //     fr: "Listes",
+    //   },
+    // },
     {
       to: "/menus",
       text: {
