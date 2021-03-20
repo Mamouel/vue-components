@@ -1,24 +1,42 @@
-# vue-components
+# Vue components
+> Reusable Vue js Components
 
-## Project setup
-```
+## Table of contents
+* [General info](#general-info)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+
+## General info
+Simple project to store and reuse vue components 
+
+## Screenshots
+![Example screenshot](./img/screenshot.png)
+
+## Technologies
+* Vue
+* Typescript
+* Vuex
+* Vue router
+
+## Setup
+Describe how to install / setup your local environement / add link to demo version.
+
+## Code Examples
+`
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
-```
+`
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Features
+List of features ready and TODOs for future development
+* Theme light/dark
+* Lang en/fr
 
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
+To-do list:
+* Full testing
+* Full types
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Status
+Project is: _in progress_
