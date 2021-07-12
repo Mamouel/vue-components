@@ -27,8 +27,6 @@ export default class Banner extends Vue {
 @import "../../style/index.scss";
 
 .banner {
-  // background-image: url("~@/assets/banner.jpg");
-  // min-height: 400px;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
